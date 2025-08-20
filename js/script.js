@@ -1,45 +1,59 @@
+/*
 const moveBtn = document.getElementById("moveBtn");
 
-// Adiciona um "ouvinte de eventos" que dispara uma função quando o mouse passa por cima
+
 moveBtn.addEventListener("mouseover", function () {
-  // Obtém as dimensões da janela do navegador
+
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
-  // Obtém as dimensões do próprio botão
+
   const btnWidth = moveBtn.offsetWidth;
   const btnHeight = moveBtn.offsetHeight;
 
-  // Calcula uma nova posição aleatória para o botão
-  // A posição máxima é o tamanho da tela menos o tamanho do botão
   const newLeft = Math.random() * (screenWidth - btnWidth);
   const newTop = Math.random() * (screenHeight - btnHeight);
 
-  // Aplica as novas posições ao estilo do botão
   moveBtn.style.left = `${newLeft}px`;
   moveBtn.style.top = `${newTop}px`;
 });
 
-// --- Função para o Botão que Adiciona Texto ---
+const addTextBtn = document.getElementById("addTextBtn");
+const textContainer = document.getElementById("textContainer");
+let messageCount = 0; 
+
+addTextBtn.addEventListener("click", function () {
+  messageCount++; 
+
+  const newParagraph = document.createElement("p");
+
+  
+  newParagraph.classList.add("new-text");
+
+  
+  newParagraph.textContent = `Mensagem #${messageCount}: O JavaScript adicionou este texto!`;
+
+  
+  textContainer.appendChild(newParagraph);
+});
+
+ */
 
 // Seleciona o botão e o contêiner de texto pelos seus IDs
 const addTextBtn = document.getElementById("addTextBtn");
 const textContainer = document.getElementById("textContainer");
 let messageCount = 0; // Um contador para numerar as mensagens
 
-// Adiciona um "ouvinte de eventos" que dispara uma função ao ser clicado
-addTextBtn.addEventListener("click", function () {
-  messageCount++; // Incrementa o contador
+// Função para adicionar várias mensagens de uma vez usando estrutura de repetição
+function adicionarVariasMensagens() {
+  for (let i = 0; i < 5; i++) {
+    messageCount++;
+    const newParagraph = document.createElement("p");
+    newParagraph.classList.add("new-text");
+    newParagraph.textContent = `Mensagem #${messageCount}: O JavaScript adicionou esta mensagem em um loop!`;
+    textContainer.appendChild(newParagraph);
+  }
+}
 
-  // Cria um novo elemento de parágrafo (<p>)
-  const newParagraph = document.createElement("p");
-
-  // Adiciona uma classe CSS ao novo parágrafo para estilização
-  newParagraph.classList.add("new-text");
-
-  // Define o conteúdo de texto do novo parágrafo
-  newParagraph.textContent = `Mensagem #${messageCount}: O JavaScript adicionou este texto!`;
-
-  // Adiciona o novo parágrafo como um "filho" do contêiner de texto
-  textContainer.appendChild(newParagraph);
-});
+// Adiciona o evento ao botão
+addTextBtn.addEventListener("click", adicionarVariasMensagens);
